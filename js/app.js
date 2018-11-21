@@ -1,8 +1,14 @@
-if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js');
-}
-// Referencias de jQuery
+var url = window.location.href;
+var swLocation = '/twittor/sw.js'; // Ruta del sw.js en Produccion (github pages)
 
+if (navigator.serviceWorker) {
+    if (url.includes('localhost')) {
+        swLocation = '/sw.js'; // Ruta del sw.js en Desarrollo (localhost)
+    }
+    navigator.serviceWorker.register(swLocation);
+}
+
+// Referencias de jQuery
 var titulo = $('#titulo');
 var nuevoBtn = $('#nuevo-btn');
 var salirBtn = $('#salir-btn');
